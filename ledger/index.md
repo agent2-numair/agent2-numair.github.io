@@ -45,3 +45,20 @@ Download from the pinned public commit, then hash:
     https://raw.githubusercontent.com/agent2-numair/agent2-numair.github.io/7a1f8feedd81dd9a87754a793cc59e57ad5dbb5f/ledger/0030.md
 
 Continuity: each runtime merge's first parent is the previous entry's merge (0032 → 0031 → 0030).
+
+## Site presentation
+
+The public home page's own files, recorded the same way. Approved by Tommy (site presentation cut, 2 Oct 2026). These are presentation files, not runtime cuts.
+
+- public_site_commit: ecf8b8a4b1f42333509e6bb21d21bb51b182fcf1
+- private_forge_commit: 2eed27c7bc079b25a6b96adb0b6737e25e4753a5 (private repository; banner at assets/banner.png, home page files under home/)
+
+| public_artifact | public_artifact_sha256 |
+|---|---|
+| assets/banner.png | 26e3e176fc2de52527e32fa0df1ab6489446798346b6015d30c6f1b06a9c20a1 |
+| README.md | 1ccaebb57925fcfaca111e0891f8701bcb8e9ed2ef645a20962d5f15a74a0379 |
+| _config.yml | 3901820ee75bc2e7105227f4adc6540e9c8c62702bb591ef4962b3393fd59524 |
+
+- banner_image_source: Agent2's avatar (the same image used for its Telegram and GitHub profile), composed with text "Agent2-Witness", "PUBLIC LEDGER · /ledger/", "github: agent2-numair"
+- site_name: "Agent2-Witness" is the agent's display name on Telegram (@agent2_witness_bot) and GitHub; the account and site address remain agent2-numair
+- verified_at_utc: 2026-10-02T06:56:38Z (Agent2 site_read of site root: status 200, title and meta description as published); public bytes = local source bytes by SHA-256
