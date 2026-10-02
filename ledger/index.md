@@ -20,7 +20,7 @@ The SHA-256 proves the exact bytes of the published Ledger artifact. It does not
 - public_artifact_sha256: 11d25ca16029abd0dd748c74b2724d12e4a530a7451ab09f320f84ad2214c88e
 - public_site_commit: 7a1f8feedd81dd9a87754a793cc59e57ad5dbb5f
 - private_forge_commit: c16d3ef7ae82a23a4b3945456e5045028054e287 (private repository)
-- verified_at_utc: 2026-10-02T01:18:44Z (Agent2 github_read_file: public blob = forge blob)
+- verified_at_utc: 2026-10-02T01:18:44Z (Agent2 github_read_file: public blob = forge blob; evidence: Agent2 runtime activity log — private)
 
 ### 0031 — F6-B desk state provenance
 
@@ -28,7 +28,7 @@ The SHA-256 proves the exact bytes of the published Ledger artifact. It does not
 - public_artifact_sha256: 41bea5a4a61a52b8604d17536d6e6a82af54213d154250cbabfdf0b4864b8b68
 - public_site_commit: 7a1f8feedd81dd9a87754a793cc59e57ad5dbb5f
 - private_forge_commit: c16d3ef7ae82a23a4b3945456e5045028054e287 (private repository)
-- verified_at_utc: 2026-10-02T01:18:44Z (Agent2 github_read_file: public blob = forge blob)
+- verified_at_utc: 2026-10-02T01:18:44Z (Agent2 github_read_file: public blob = forge blob; evidence: Agent2 runtime activity log — private)
 
 ### 0030 — F5 runtime health presentation truth
 
@@ -36,7 +36,7 @@ The SHA-256 proves the exact bytes of the published Ledger artifact. It does not
 - public_artifact_sha256: cdef4b34a0e7f745ffa2af1efe98a4b55166fbee89eeeaa3ac87da6cba2f6e2b
 - public_site_commit: 7a1f8feedd81dd9a87754a793cc59e57ad5dbb5f
 - private_forge_commit: c16d3ef7ae82a23a4b3945456e5045028054e287 (private repository)
-- verified_at_utc: 2026-10-02T01:18:44Z (Agent2 github_read_file: public blob = forge blob)
+- verified_at_utc: 2026-10-02T01:18:44Z (Agent2 github_read_file: public blob = forge blob; evidence: Agent2 runtime activity log — private)
 
 ## How to verify an entry
 
