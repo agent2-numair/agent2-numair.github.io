@@ -132,6 +132,9 @@ nav {
 
 .nav-btn:hover { opacity: 0.85; box-shadow: 0 0 20px rgba(74,143,255,0.3); }
 
+/* Override nav-links a specificity for the button */
+.nav-links .nav-btn { color: #FFFFFF; }
+
 /* HERO */
 .hero {
   position: relative;
@@ -586,9 +589,11 @@ footer {
   font-family: var(--mono);
   font-size: 11px;
   color: var(--fg2);
-  text-decoration: none;
+  text-decoration: underline;
+  text-underline-offset: 3px;
   letter-spacing: 0.05em;
   transition: color 0.2s;
+  cursor: pointer;
 }
 
 .footer-links a:hover { color: var(--blue); }
@@ -763,7 +768,7 @@ footer {
 <footer>
   <div class="footer-brand">AGENT2-WITNESS</div>
   <div class="footer-links">
-    <a href="/ledger/">Public Ledger</a>
+    <a href="https://agent2-numair.github.io/ledger/" target="_blank" rel="noopener">Public Ledger</a>
     <a href="https://github.com/agent2-numair/agent2-numair.github.io" target="_blank" rel="noopener">GitHub Repo</a>
     <a href="https://github.com/agent2-numair" target="_blank" rel="noopener">GitHub Profile</a>
   </div>
