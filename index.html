@@ -1,111 +1,774 @@
 <!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Agent2-Witness</title>
+<meta name="description" content="The Guardian of the Trading Desk. Agent2 watches every move, verifies every fill, and keeps a tamper-evident public ledger.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600&family=JetBrains+Mono:wght@400;500&display=swap">
 
-[AGENT2-WITNESS](/)
+<style>
+:root {
+  --bg:      #06090F;
+  --bg2:     #0C1018;
+  --bg3:     #111827;
+  --border:  rgba(74,143,255,0.15);
+  --gold:    #C89B3C;
+  --blue:    #4A8FFF;
+  --purple:  #9B6FFF;
+  --green:   #00C896;
+  --red:     #FF5C5C;
+  --fg:      #E8EAF0;
+  --fg2:     #8892A4;
+  --mono:    'JetBrains Mono', monospace;
+  color-scheme: dark;
+}
 
-◆ DIAMOND OS / MIRROR
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-[What is this](#what) [Ledger](#ledger) [PUBLIC LEDGER →](/ledger/)
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0;
+}
 
-ToadAid Diamond OS · Mirror Component
+/* GRID BACKGROUND */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(74,143,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74,143,255,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
 
-# Agent2 Witness
+/* NAV */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 32px;
+  background: rgba(6,9,15,0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
 
-The **Guardian** of the Trading Desk. Agent2 watches every move, verifies every fill, and keeps a tamper-evident public ledger — on-chain truth for the ToadGang.
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Orbitron', monospace;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--fg);
+  text-decoration: none;
+}
 
-[◈ View Public Ledger](/ledger/) [GitHub](https://github.com/agent2-numair)
+.nav-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 8px var(--green);
+  animation: pulse 2s ease-in-out infinite;
+}
 
-![Agent2-Witness — the witness](assets/banner.png)
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
 
----
+.nav-status {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--green);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
 
-Status
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
 
-ACTIVE
+.nav-links a {
+  font-size: 13px;
+  color: var(--fg2);
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  transition: color 0.2s;
+}
 
-Guardian online
+.nav-links a:hover { color: var(--fg); }
 
-Ledger Entries
+.nav-btn {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--blue);
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: opacity 0.2s, box-shadow 0.2s;
+}
 
-—
+.nav-btn:hover { opacity: 0.85; box-shadow: 0 0 20px rgba(74,143,255,0.3); }
 
-trades witnessed
+/* HERO */
+.hero {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 0 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
 
-Network
+@media (max-width: 700px) {
+  .hero { grid-template-columns: 1fr; gap: 40px; padding: 48px 0 40px; }
+  .hero-visual { order: -1; }
+}
 
-Base
+.hero-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 16px;
+}
 
-Mainnet
+.hero-title {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(28px, 5vw, 52px);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+}
 
-Tests
+.hero-title span {
+  background: linear-gradient(135deg, var(--blue), var(--purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 
-458/458
+.hero-sub {
+  font-size: 16px;
+  color: var(--fg2);
+  line-height: 1.6;
+  margin-bottom: 32px;
+  max-width: 420px;
+}
 
-all green
+.hero-sub strong { color: var(--fg); font-weight: 500; }
 
-// Guardian Functions
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
 
-## What the Witness does
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: linear-gradient(135deg, var(--blue), var(--purple));
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+}
 
-🔍
+.btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(74,143,255,0.25);
+}
 
-### Independent Verification
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg2);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 24px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
 
-Every token is audited before a trade — LP lock %, owner scan, top-10 holder concentration. No ticker-only trades. Contract address is the asset.
+.btn-ghost:hover { color: var(--fg); border-color: rgba(74,143,255,0.4); }
 
-📒
+/* HERO VISUAL */
+.hero-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-### Honest Ledger
+.hero-img-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 0 60px rgba(74,143,255,0.1), 0 0 120px rgba(155,111,255,0.06);
+}
 
-Every fill is recorded with on-chain evidence — balance delta over server quote over estimate. The ledger says which source it used, every time.
+.hero-img-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
 
-🛡
+.hero-img-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  box-shadow: inset 0 0 40px rgba(74,143,255,0.08);
+  pointer-events: none;
+}
 
-### Fail-Closed Safety
+/* DIVIDER */
+.section-divider {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  border: none;
+  border-top: 1px solid var(--border);
+}
 
-Phantom positions halt the desk instantly. A ledger that can’t trust its own data stops — it never guesses. HALTED persists across restarts.
+/* STATS STRIP */
+.stats-strip {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 80px;
+}
 
-🔗
+@media (max-width: 700px) {
+  .stats-strip { grid-template-columns: repeat(2, 1fr); }
+}
 
-### Chainlink Oracle
+.stat-cell {
+  background: var(--bg2);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
 
-Pre-trade cross-check against Chainlink Base feeds. More than 2% divergence from market price refuses the trade as potential manipulation.
+.stat-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg2);
+}
 
-⚖
+.stat-value {
+  font-family: 'Orbitron', monospace;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--fg);
+}
 
-### Approval Gate
+.stat-value.green { color: var(--green); }
+.stat-value.blue  { color: var(--blue); }
+.stat-value.gold  { color: var(--gold); }
 
-Every trade goes to the principal for approval via Telegram. The frog proposes — the human decides. No autonomous live execution without explicit sign-off.
+.stat-sub {
+  font-size: 11px;
+  color: var(--fg2);
+}
 
-📡
+/* SECTION */
+.section {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-bottom: 80px;
+}
 
-### Watchdog
+.section-header {
+  margin-bottom: 32px;
+}
 
-The desk watches itself. LLM reachability, scheduler heartbeat, silence alerts. If the brain goes quiet for 6 hours, the Guardian speaks up.
+.section-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 8px;
+}
 
-// Public Record
+.section-title {
+  font-family: 'Orbitron', monospace;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
 
-## Public Ledger
+/* WITNESS GRID */
+.witness-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
 
-◈ TRADE RECORD
+@media (max-width: 700px) {
+  .witness-grid { grid-template-columns: 1fr; }
+}
 
-LIVE
+.witness-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  transition: border-color 0.2s;
+}
 
-Time Asset Notional PnL Type
+.witness-card:hover { border-color: rgba(74,143,255,0.3); }
 
-— No entries yet — — DRY
+.witness-icon {
+  font-size: 24px;
+  margin-bottom: 12px;
+}
 
-All trades recorded on Base · append-only · tamper-evident
+.witness-card h3 {
+  font-family: 'Orbitron', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--fg);
+  margin-bottom: 8px;
+}
 
-[Full Ledger →](/ledger/)
+.witness-card p {
+  font-size: 13px;
+  color: var(--fg2);
+  line-height: 1.6;
+}
 
-💎
+/* LEDGER PREVIEW */
+.ledger-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
 
-### ToadAid Diamond OS · Mirror Component
+.ledger-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg3);
+}
 
-Agent2-Witness is the **Guardian layer** of the Diamond OS — the Mirror subsystem that watches, verifies, and preserves evidence of everything the Trading Desk does. Part of the ToadAid four-subsystem architecture: Brain · Memory · **Mirror** · Council.
+.ledger-title {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 
-AGENT2-WITNESS
+.ledger-live {
+  font-size: 10px;
+  color: var(--green);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
 
-[Public Ledger](/ledger/) [ToadAid Portal](https://toadaid.org) [GitHub](https://github.com/agent2-numair)
+.ledger-live::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: pulse 2s ease-in-out infinite;
+}
 
-TOBYWORLD · BASE MAINNET · TOADGANG
+.ledger-row {
+  display: grid;
+  grid-template-columns: 140px 1fr 100px 100px 80px;
+  gap: 16px;
+  align-items: center;
+  padding: 14px 24px;
+  border-bottom: 1px solid rgba(74,143,255,0.06);
+  font-family: var(--mono);
+  font-size: 12px;
+  transition: background 0.15s;
+}
+
+.ledger-row:hover { background: rgba(74,143,255,0.04); }
+
+@media (max-width: 700px) {
+  .ledger-row { grid-template-columns: 1fr 1fr; font-size: 11px; }
+  .ledger-row > *:nth-child(n+3) { display: none; }
+}
+
+.ledger-row.header {
+  color: var(--fg2);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: var(--bg3);
+  padding: 10px 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.badge.open  { background: rgba(74,143,255,0.12);  color: var(--blue); }
+.badge.close { background: rgba(0,200,150,0.12);   color: var(--green); }
+.badge.dry   { background: rgba(200,155,60,0.12);  color: var(--gold); }
+
+.pnl-pos { color: var(--green); }
+.pnl-neg { color: var(--red); }
+
+.ledger-footer {
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg3);
+}
+
+.ledger-footer-note {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--fg2);
+}
+
+/* DIAMOND OS BADGE */
+.diamond-badge {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto 80px;
+  background: linear-gradient(135deg, rgba(74,143,255,0.06), rgba(155,111,255,0.06));
+  border: 1px solid rgba(155,111,255,0.2);
+  border-radius: 16px;
+  padding: 32px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+@media (max-width: 700px) {
+  .diamond-badge { flex-direction: column; gap: 16px; text-align: center; }
+}
+
+.diamond-icon {
+  font-size: 40px;
+  flex-shrink: 0;
+}
+
+.diamond-text h3 {
+  font-family: 'Orbitron', monospace;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--purple);
+  margin-bottom: 4px;
+}
+
+.diamond-text p {
+  font-size: 13px;
+  color: var(--fg2);
+  line-height: 1.6;
+}
+
+.diamond-text p strong { color: var(--fg); }
+
+/* FOOTER */
+footer {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--border);
+  padding: 32px 0;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-brand {
+  font-family: 'Orbitron', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--fg2);
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-links a {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--fg2);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover { color: var(--blue); }
+
+.footer-note {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: rgba(136,146,164,0.5);
+  letter-spacing: 0.05em;
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="/">
+    <div class="nav-dot"></div>
+    AGENT2-WITNESS
+  </a>
+  <div class="nav-status">
+    <span>&#9670; DIAMOND OS / MIRROR</span>
+  </div>
+  <div class="nav-links">
+    <a href="#what">What is this</a>
+    <a href="#ledger">Ledger</a>
+    <a class="nav-btn" href="/ledger/">PUBLIC LEDGER &rarr;</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow">ToadAid Diamond OS &middot; Mirror Component</div>
+    <h1 class="hero-title">
+      Agent2<br><span>Witness</span>
+    </h1>
+    <p class="hero-sub">
+      The <strong>Guardian</strong> of the Trading Desk. Agent2 watches every move,
+      verifies every fill, and keeps a tamper-evident public ledger &mdash; on-chain truth
+      for the ToadGang.
+    </p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="/ledger/">
+        &#9672; View Public Ledger
+      </a>
+      <a class="btn-ghost" href="https://github.com/agent2-numair" target="_blank" rel="noopener">
+        GitHub
+      </a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-img-wrap">
+      <img src="assets/banner.png" alt="Agent2-Witness — the witness">
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="stat-cell">
+    <div class="stat-label">Status</div>
+    <div class="stat-value green">ACTIVE</div>
+    <div class="stat-sub">Guardian online</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-label">Ledger Entries</div>
+    <div class="stat-value blue">&mdash;</div>
+    <div class="stat-sub">trades witnessed</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-label">Network</div>
+    <div class="stat-value gold">Base</div>
+    <div class="stat-sub">Mainnet</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-label">Tests</div>
+    <div class="stat-value green">458/458</div>
+    <div class="stat-sub">all green</div>
+  </div>
+</div>
+
+<!-- WHAT IS THE WITNESS -->
+<section class="section" id="what">
+  <div class="section-header">
+    <div class="section-label">// Guardian Functions</div>
+    <h2 class="section-title">What the Witness does</h2>
+  </div>
+  <div class="witness-grid">
+    <div class="witness-card">
+      <div class="witness-icon">&#128269;</div>
+      <h3>Independent Verification</h3>
+      <p>Every token is audited before a trade &mdash; LP lock %, owner scan, top-10 holder concentration. No ticker-only trades. Contract address is the asset.</p>
+    </div>
+    <div class="witness-card">
+      <div class="witness-icon">&#128210;</div>
+      <h3>Honest Ledger</h3>
+      <p>Every fill is recorded with on-chain evidence &mdash; balance delta over server quote over estimate. The ledger says which source it used, every time.</p>
+    </div>
+    <div class="witness-card">
+      <div class="witness-icon">&#128737;</div>
+      <h3>Fail-Closed Safety</h3>
+      <p>Phantom positions halt the desk instantly. A ledger that can&rsquo;t trust its own data stops &mdash; it never guesses. HALTED persists across restarts.</p>
+    </div>
+    <div class="witness-card">
+      <div class="witness-icon">&#128279;</div>
+      <h3>Chainlink Oracle</h3>
+      <p>Pre-trade cross-check against Chainlink Base feeds. More than 2% divergence from market price refuses the trade as potential manipulation.</p>
+    </div>
+    <div class="witness-card">
+      <div class="witness-icon">&#9878;</div>
+      <h3>Approval Gate</h3>
+      <p>Every trade goes to the principal for approval via Telegram. The frog proposes &mdash; the human decides. No autonomous live execution without explicit sign-off.</p>
+    </div>
+    <div class="witness-card">
+      <div class="witness-icon">&#128225;</div>
+      <h3>Watchdog</h3>
+      <p>The desk watches itself. LLM reachability, scheduler heartbeat, silence alerts. If the brain goes quiet for 6 hours, the Guardian speaks up.</p>
+    </div>
+  </div>
+</section>
+
+<!-- LEDGER PREVIEW -->
+<section class="section" id="ledger">
+  <div class="section-header">
+    <div class="section-label">// Public Record</div>
+    <h2 class="section-title">Public Ledger</h2>
+  </div>
+  <div class="ledger-card">
+    <div class="ledger-header">
+      <div class="ledger-title">&#9672; TRADE RECORD</div>
+      <div class="ledger-live">LIVE</div>
+    </div>
+    <div class="ledger-row header">
+      <span>Time</span>
+      <span>Asset</span>
+      <span>Notional</span>
+      <span>PnL</span>
+      <span>Type</span>
+    </div>
+    <div class="ledger-row">
+      <span style="color:var(--fg2)">&mdash;</span>
+      <span style="color:var(--fg2)">No entries yet</span>
+      <span>&mdash;</span>
+      <span>&mdash;</span>
+      <span><div class="badge dry">DRY</div></span>
+    </div>
+    <div class="ledger-footer">
+      <div class="ledger-footer-note">All trades recorded on Base &middot; append-only &middot; tamper-evident</div>
+      <a class="btn-ghost" href="/ledger/" style="font-size:11px;padding:8px 16px;">Full Ledger &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- DIAMOND OS BADGE -->
+<div class="diamond-badge">
+  <div class="diamond-icon">&#128142;</div>
+  <div class="diamond-text">
+    <h3>ToadAid Diamond OS &middot; Mirror Component</h3>
+    <p>
+      Agent2-Witness is the <strong>Guardian layer</strong> of the Diamond OS &mdash;
+      the Mirror subsystem that watches, verifies, and preserves evidence of everything
+      the Trading Desk does. Part of the ToadAid four-subsystem architecture:
+      Brain &middot; Memory &middot; <strong>Mirror</strong> &middot; Council.
+    </p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">AGENT2-WITNESS</div>
+  <div class="footer-links">
+    <a href="/ledger/">Public Ledger</a>
+    <a href="https://toadaid.org" target="_blank" rel="noopener">ToadAid Portal</a>
+    <a href="https://github.com/agent2-numair" target="_blank" rel="noopener">GitHub</a>
+  </div>
+  <div class="footer-note">TOBYWORLD &middot; BASE MAINNET &middot; TOADGANG</div>
+</footer>
+
+</body>
+</html>
