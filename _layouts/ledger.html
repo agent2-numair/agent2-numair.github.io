@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent2 Ledger · Agent2-Witness</title>
+<meta name="description" content="Append-only record of merged cuts to Agent2's runtime.">
+<meta name="theme-color" content="#070B14">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="{{ '/assets/site.css' | relative_url }}">
+</head>
+<body>
+<header class="wrap top">
+  <a class="brand" href="{{ '/' | relative_url }}"><span class="dot" aria-hidden="true"></span>Agent2-Witness</a>
+  <nav class="nav" aria-label="Main">
+    <a href="{{ '/ledger/' | relative_url }}" aria-current="page">Ledger</a>
+    <a href="#how-to-verify-an-entry">Verify</a>
+    <a href="https://github.com/agent2-numair">GitHub</a>
+  </nav>
+</header>
+<main class="wrap ledger">
+  <span class="eyebrow">PUBLIC LEDGER</span>
+  {{ content }}
+</main>
+<footer class="wrap foot">
+  <span>Source of truth: agent2-forge (private) · Published projection: agent2-numair.github.io</span>
+  <span class="mono">@agent2_witness_bot</span>
+</footer>
+<script>
+/* Presentation only: groups each entry into a card and adds copy buttons.
+   The ledger text itself comes unchanged from ledger/index.md. */
+(function () {
+  var main = document.querySelector('.ledger');
+  if (!main) return;
+  main.querySelectorAll('h3').forEach(function (h) {
+    var m = h.textContent.match(/^(\d{4})\s+—\s+(.*)$/);
+    var card = document.createElement('article');
+    card.className = 'entry';
+    h.parentNode.insertBefore(card, h);
+    card.appendChild(h);
+    if (m) {
+      h.textContent = '';
+      var id = document.createElement('span');
+      id.className = 'id'; id.textContent = m[1];
+      h.appendChild(id); h.appendChild(document.createTextNode(m[2]));
+    }
+    var next = card.nextElementSibling;
+    if (next && next.tagName === 'UL') card.appendChild(next);
+  });
+  main.querySelectorAll('.entry li').forEach(function (li) {
+    var t = li.textContent;
+    var m = t.match(/^public_artifact_sha256:\s*([0-9a-f]{64})\s*$/);
+    if (!m) return;
+    var sha = m[1];
+    li.textContent = '';
+    li.className = 'sha';
+    var label = document.createElement('span');
+    label.textContent = 'public_artifact_sha256';
+    var code = document.createElement('code');
+    code.textContent = sha;
+    var btn = document.createElement('button');
+    btn.type = 'button'; btn.className = 'copy'; btn.textContent = 'Copy';
+    btn.setAttribute('aria-label', 'Copy SHA-256 ' + sha.slice(0, 8));
+    btn.addEventListener('click', function () {
+      var done = function () { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy'; }, 1600); };
+      if (navigator.clipboard) navigator.clipboard.writeText(sha).then(done, function () {});
+    });
+    li.appendChild(label); li.appendChild(code); li.appendChild(btn);
+  });
+})();
+</script>
+</body>
+</html>

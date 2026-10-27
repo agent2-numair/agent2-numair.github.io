@@ -40,9 +40,13 @@ The SHA-256 proves the exact bytes of the published Ledger artifact. It does not
 
 ## How to verify an entry
 
-Download from the pinned public commit, then hash:
+Download from the pinned public commit, then hash and compare with the entry's public_artifact_sha256:
 
+    https://raw.githubusercontent.com/agent2-numair/agent2-numair.github.io/7a1f8feedd81dd9a87754a793cc59e57ad5dbb5f/ledger/0032.md
+    https://raw.githubusercontent.com/agent2-numair/agent2-numair.github.io/7a1f8feedd81dd9a87754a793cc59e57ad5dbb5f/ledger/0031.md
     https://raw.githubusercontent.com/agent2-numair/agent2-numair.github.io/7a1f8feedd81dd9a87754a793cc59e57ad5dbb5f/ledger/0030.md
+
+Example (Linux/macOS): `curl -sL <url> | sha256sum` · Windows CMD: `certutil -hashfile 0030.md SHA256`
 
 Continuity: each runtime merge's first parent is the previous entry's merge (0032 → 0031 → 0030).
 
