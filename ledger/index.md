@@ -14,6 +14,13 @@ The SHA-256 proves the exact bytes of the published Ledger artifact. It does not
 
 ## Entries
 
+### 0033 — Site file verification (written by Agent2)
+
+- public_artifact: ledger/0033.md
+- public_artifact_sha256: c97d3562d1124fced7d8e20a9bdde10e812af3cef78bd4071b75634413e3bef6
+- verified_at_utc: 2026-10-28T18:28:00Z (Agent2 github_read_file at public commit eb9003e4b6c36f5fbb1c6152e07000fdba46e422: blob SHA and size of six site files; SHA-256 NOT RECORDED by Agent2 — no hashing tool)
+- public_site_commit: NOT RECORDED (pinned by the next entry)
+
 ### 0032 — G1 Agent2 GitHub read-only wiring
 
 - public_artifact: ledger/0032.md
