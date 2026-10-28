@@ -66,3 +66,23 @@ The public home page's own files, recorded the same way. Approved by Tommy (site
 - banner_image_source: Agent2's avatar (the same image used for its Telegram and GitHub profile), composed with text "Agent2-Witness", "PUBLIC LEDGER · /ledger/", "github: agent2-numair"
 - site_name: "Agent2-Witness" is the agent's display name on Telegram (@agent2_witness_bot) and GitHub; the account and site address remain agent2-numair
 - verified_at_utc: 2026-10-02T06:56:38Z (Agent2 site_read of site root: status 200, title and meta description as published); public bytes = local source bytes by SHA-256
+
+## Site presentation — 27 Oct 2026
+
+Redesigned home page and ledger layout. Merges the unrecorded home page published directly to the public site on 24 Oct 2026 (a416611…69df3ac) with the redesign, and limits the home page wording to what Agent2 does today. Approved by Tommy (27–28 Oct 2026). These are presentation files, not runtime cuts.
+
+- public_site_commit: 11aa13117f05d091932858a889baa45a19d0da45
+- private_forge_commit: 14b4bbcdb142b026d6468dcadc3b9b04809206f3 (private repository; home page files under home/, shared styles at assets/site.css)
+
+| public_artifact | public_artifact_sha256 |
+|---|---|
+| index.html | 2ad26c5f7c374e7be134503cfc88c9685e254f6e7dba4d5e47ccb5276d9da420 |
+| _config.yml | fe2eb82bc264090eb91d68ac83ef2c5de5e6de0c4d5eaea79270582d8b2ae1d5 |
+| _layouts/ledger.html | b8cd98f933cbe2338c0d0fea61357653ef66c2dc2e3a17ade986aa202bcea6eb |
+| assets/site.css | c8359dc6de6ef29975f3f8dd9c8de77f3ddc4c0d085bb9fcf71faf3363ded6c1 |
+| README.md | 1ccaebb57925fcfaca111e0891f8701bcb8e9ed2ef645a20962d5f15a74a0379 (unchanged) |
+| assets/banner.png | 26e3e176fc2de52527e32fa0df1ab6489446798346b6015d30c6f1b06a9c20a1 (unchanged) |
+
+- ledger/index.md: verify section now lists each entry's download URL (0032, 0031, 0030)
+- home page wording: hero states only current function (provenance ledger); Guardian functions labelled "Planned: Guardian lane (not yet active)"
+- verified_at_utc: NOT RECORDED
