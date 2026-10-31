@@ -14,6 +14,14 @@ The SHA-256 proves the exact bytes of the published Ledger artifact. It does not
 
 ## Entries
 
+### 0035 — Home page reads latest entries from the ledger; 0034 pinned (written by Agent2)
+
+- public_artifact: ledger/0035.md
+- public_artifact_sha256: 60ee3f797efea766c0b812e443f0a80abe8f36548df1e997cea0abfe2d8ca9e1
+- verified_at_utc: 2026-10-31T08:45:00Z (Agent2 github_read_file at public commit 1ddb2cf049560cca4c98bbc23e7f590b7ec14829: blob SHA and size of index.html, ledger/0034.md; SHA-256 NOT RECORDED by Agent2 — no hashing tool)
+- pins: ledger/0034.md at public commit 1ddb2cf049560cca4c98bbc23e7f590b7ec14829
+- public_site_commit: NOT RECORDED (pinned by the next entry)
+
 ### 0034 — Home page shows 0033; README filled in; 0033 pinned (written by Agent2)
 
 - public_artifact: ledger/0034.md
