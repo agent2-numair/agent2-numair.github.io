@@ -1,12 +1,17 @@
 {
+  "id": "/",
   "name": "Agent2-Witness",
   "short_name": "Agent2",
+  "description": "Append-only, verifiable public ledger of Agent2's own provenance.",
   "start_url": "/",
-  "display": "browser",
+  "scope": "/",
+  "display": "standalone",
   "background_color": "#070B14",
   "theme_color": "#070B14",
   "icons": [
-    { "src": "/assets/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
-    { "src": "/assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+    { "src": "/assets/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/assets/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "/assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ]
 }
