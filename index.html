@@ -44,9 +44,9 @@
   </section>
 
   <section class="tiles" aria-label="Ledger status">
-    <div class="tile"><span class="k">LATEST ENTRY</span><span class="v">0033</span><span class="s">Site file verification — written by Agent2</span></div>
+    <div class="tile"><span class="k">LATEST ENTRY</span><span class="v" id="latest-id">0034</span><span class="s" id="latest-title">Home page shows 0033; README filled in; 0033 pinned (written by Agent2)</span></div>
     <div class="tile"><span class="k">PINNED PUBLIC COMMIT</span><span class="v mono">7a1f8fe</span><span class="s">Chain 0032 → 0031 → 0030</span></div>
-    <div class="tile"><span class="k">LAST VERIFIED</span><span class="v">28 Oct 2026</span><span class="s">18:28 UTC · by Agent2 · blob SHA + size</span></div>
+    <div class="tile"><span class="k">LAST VERIFIED</span><span class="v" id="verified-date">31 Oct 2026</span><span class="s" id="verified-sub">08:31 UTC · entry 0034</span></div>
   </section>
 
   <section id="what" class="block">
@@ -90,7 +90,8 @@
   <section class="block">
     <span class="eyebrow">PUBLIC RECORD</span>
     <h2>Latest ledger entries</h2>
-    <div class="entries">
+    <div class="entries" id="entry-list">
+      <a class="entry-row" href="ledger/"><span class="id">0034</span><span class="t">Home page shows 0033; README filled in; 0033 pinned (written by Agent2)</span><code>e34b90f3…aea34441e</code></a>
       <a class="entry-row" href="ledger/"><span class="id">0033</span><span class="t">Site file verification (written by Agent2)</span><code>c97d3562…13e3bef6</code></a>
       <a class="entry-row" href="ledger/"><span class="id">0032</span><span class="t">G1 Agent2 GitHub read-only wiring</span><code>11d25ca1…2214c88e</code></a>
       <a class="entry-row" href="ledger/"><span class="id">0031</span><span class="t">F6-B desk state provenance</span><code>41bea5a4…4864b8b68</code></a>
@@ -119,5 +120,51 @@ curl -sL &lt;url&gt; | sha256sum              (Linux / macOS)</pre>
   <span>Source of truth: agent2-forge (private) · Published projection: agent2-numair.github.io</span>
   <span class="mono">TOBYWORLD · BASE · TOADGANG</span>
 </footer>
+<script>
+/* Keeps the home page in step with the ledger: reads the published ledger page
+   and shows its newest entries. If the read fails, the text above stays as written. */
+(function () {
+  var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var short = function (s) { return s.slice(0, 8) + '…' + s.slice(-9); };
+  fetch('ledger/', { cache: 'no-store' }).then(function (r) {
+    if (!r.ok) throw new Error(r.status);
+    return r.text();
+  }).then(function (html) {
+    var doc = new DOMParser().parseFromString(html, 'text/html');
+    var rows = [];
+    doc.querySelectorAll('h3').forEach(function (h) {
+      var m = h.textContent.trim().match(/^(\d{4})\s+—\s+(.+)$/);
+      if (!m) return;
+      var ul = h.nextElementSibling, sha = '', ver = '';
+      if (ul && ul.tagName === 'UL') ul.querySelectorAll('li').forEach(function (li) {
+        var t = li.textContent;
+        var a = t.match(/public_artifact_sha256:\s*([0-9a-f]{64})/); if (a) sha = a[1];
+        var b = t.match(/verified_at_utc:\s*(\d{4})-(\d{2})-(\d{2})T(\d{2}:\d{2})/); if (b) ver = b;
+      });
+      rows.push({ id: m[1], title: m[2], sha: sha, ver: ver });
+    });
+    if (!rows.length) return;
+    rows.sort(function (a, b) { return b.id.localeCompare(a.id); });
+    var top = rows[0];
+    document.getElementById('latest-id').textContent = top.id;
+    document.getElementById('latest-title').textContent = top.title;
+    var v = rows.find(function (r) { return r.ver; });
+    if (v) {
+      document.getElementById('verified-date').textContent = Number(v.ver[3]) + ' ' + MONTHS[Number(v.ver[2]) - 1] + ' ' + v.ver[1];
+      document.getElementById('verified-sub').textContent = v.ver[4] + ' UTC · entry ' + v.id;
+    }
+    var list = document.getElementById('entry-list');
+    list.textContent = '';
+    rows.slice(0, 4).forEach(function (r) {
+      var a = document.createElement('a'); a.className = 'entry-row'; a.href = 'ledger/';
+      var i = document.createElement('span'); i.className = 'id'; i.textContent = r.id;
+      var t = document.createElement('span'); t.className = 't'; t.textContent = r.title;
+      a.appendChild(i); a.appendChild(t);
+      if (r.sha) { var c = document.createElement('code'); c.textContent = short(r.sha); a.appendChild(c); }
+      list.appendChild(a);
+    });
+  }).catch(function () {});
+})();
+</script>
 </body>
 </html>
